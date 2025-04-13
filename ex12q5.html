@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex12q5(23bce1777)</title>
+    <style>
+        .container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border: 2px solid black;
+        }
+        .box {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            line-height: 150px;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+        }
+        #box1 {
+            background-color: red;
+            top: 50px;
+            left: 50px;
+            z-index: 1;
+        }
+        #box2 {
+            background-color: blue;
+            top: 80px;
+            left: 80px;
+            z-index: 2;
+        }
+        #box3 {
+            background-color: green;
+            top: 110px;
+            left: 110px;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Change Stacking Order of Elements</h2>
+    <div class="container">
+        <div class="box" id="box1">Box 1</div>
+        <div class="box" id="box2">Box 2</div>
+        <div class="box" id="box3">Box 3</div>
+    </div>
+
+    <div>
+        <h3>Adjust z-Index</h3>
+        <div>
+            <button onclick="changeZIndex('box1', 1)">Increase Box 1</button>
+            <button onclick="changeZIndex('box1', -1)">Decrease Box 1</button>
+            <span id="zindex-box1">z-index: 1</span>
+        </div>
+        <div>
+            <button onclick="changeZIndex('box2', 1)">Increase Box 2</button>
+            <button onclick="changeZIndex('box2', -1)">Decrease Box 2</button>
+            <span id="zindex-box2">z-index: 2</span>
+        </div>
+        <div>
+            <button onclick="changeZIndex('box3', 1)">Increase Box 3</button>
+            <button onclick="changeZIndex('box3', -1)">Decrease Box 3</button>
+            <span id="zindex-box3">z-index: 3</span>
+        </div>
+    </div>
+
+    <script>
+        function changeZIndex(boxId, change) {
+            let box = document.getElementById(boxId);
+            let zIndex = parseInt(window.getComputedStyle(box).zIndex) || 0;
+            let newZIndex = zIndex + change;
+            box.style.zIndex = newZIndex;
+            document.getElementById('zindex-' + boxId).textContent = "z-index: " + newZIndex;
+        }
+    </script>
+
+</body>
+</html>
